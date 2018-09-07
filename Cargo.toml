@@ -1,0 +1,18 @@
+[package]
+name = "cortex-r-rt"
+version = "0.1.0"
+authors = ["Paolo Teti <paolo.teti@gmail.com>"]
+categories = ["embedded", "no-std"]
+description = "Minimal runtime / startup for Cortex-R microcontrollers"
+keywords = ["arm", "cortex-r"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/paoloteti/cortex-r-rt"
+
+[dependencies]
+r0 = "0.2.1"
+panic-abort = "0.3.0"
+
+[features]
+default = ["errata57", "errata66"]
+errata57 = []
+errata66 = []
