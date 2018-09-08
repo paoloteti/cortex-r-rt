@@ -1,3 +1,8 @@
+
+extern "C" {
+    pub fn _cpu_stack();
+}
+
 /// Initialize Core registers, including floating point, in all
 /// CPU working modes.
 /// This function is andatory to avoid any lock-step compare
@@ -102,29 +107,5 @@ pub unsafe fn init_core_registers() {
 
 #[naked]
 pub unsafe fn init_stack_pointers() {
-    //TODO: stack address are hard-coded at the monent!!
-    asm!(
-        "
-        cps   #17
-        ldr   sp,   fiq_sp
-        cps   #18
-        ldr   sp,   irq_sp
-        cps   #19
-        ldr   sp,   svc_sp
-        cps   #23
-        ldr   sp,   abort_sp
-        cps   #27
-        ldr   sp,   undef_sp
-        cps   #31
-        ldr   sp,   user_sp
-        bx lr
-
-user_sp:  .word 0x08001000
-svc_sp:   .word 0x08001100
-fiq_sp:   .word 0x08001200
-irq_sp:   .word 0x08001300
-abort_sp: .word 0x08001400
-undef_sp: .word 0x08001500
-    "
-    );
+    _cpu_stack()
 }

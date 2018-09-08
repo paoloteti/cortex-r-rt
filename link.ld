@@ -13,12 +13,19 @@ __stack_size__ = 0x00001500;
 __heap_size__  = HEAP_LENGTH;
 
 /* Stack pointers in all CPU modes */
-__fiq_sp   = 0x08001200;
-__irq_sp   = 0x08001300;
-__svc_sp   = 0x08001100;
-__abort_sp = 0x08001400;
-__undef_sp = 0x08001500;
-__user_sp  = 0x08001000;
+USER_SP  = 0x08001000;
+SVC_SP   = 0x08001100;
+FIQ_SP   = 0x08001200;
+IRQ_SP   = 0x08001300;
+ABORT_SP = 0x08001400;
+UNDEF_SP = 0x08001500;
+
+PROVIDE(__user_sp = USER_SP);
+PROVIDE(__svc_sp = SVC_SP);
+PROVIDE(__fiq_sp = FIQ_SP);
+PROVIDE(__irq_sp = IRQ_SP);
+PROVIDE(__abort_sp = ABORT_SP);
+PROVIDE(__undef_sp = UNDEF_SP);
 
 SECTIONS
 {
