@@ -7,7 +7,7 @@ extern "C" {
 /// CPU working modes.
 /// This function is andatory to avoid any lock-step compare
 /// failure at startup or at first mode switch.
-#[naked]
+#[inline(never)]
 pub unsafe fn init_core_registers() {
     asm!(
         "
@@ -105,7 +105,7 @@ pub unsafe fn init_core_registers() {
     );
 }
 
-#[naked]
+#[inline(always)]
 pub unsafe fn init_stack_pointers() {
     _cpu_stack()
 }
