@@ -1,7 +1,6 @@
 
     .section .text
     .syntax unified
-    .cpu cortex-r4
     .arm
 
     .weak _cpu_stack
