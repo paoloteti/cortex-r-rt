@@ -3,11 +3,11 @@
 ///
 
 extern "C" {
-    pub fn cpu_reset();
-    pub fn undef_entry();
-    pub fn prefetch_abort();
-    pub fn phantom_interrupt();
-    pub fn svc_handler();
+    pub fn _cpu_reset();
+    pub fn _undef_entry();
+    pub fn _prefetch_abort();
+    pub fn _phantom_interrupt();
+    pub fn _svc_handler();
     pub fn _dabort();
 }
 
@@ -38,7 +38,7 @@ extern "C" {
 global_asm!(
     r#"
     .section .intvecs,"a",%progbits
-    .extern cpu_reset
+    .extern _cpu_reset
     .extern _undef_entry
     .extern _svc_handler
     .extern _prefetch_abort
@@ -47,7 +47,7 @@ global_asm!(
     .weak reset_entry
 
 reset_entry:
-    b   cpu_reset
+    b   _cpu_reset
     b   _undef_entry
     b   _svc_handler
     b   _prefetch_abort
