@@ -1,7 +1,8 @@
 
 MEMORY
 {
-    rom (rx)     : ORIGIN = 0x00000000,   LENGTH = 0x00180000
+    vectors (rx) : ORIGIN = 0x00000000,   LENGTH = 0x00000020
+    rom (rx)     : ORIGIN = 0x00000020,   LENGTH = 0x00180000
     stack (rw)   : ORIGIN = 0x08000000,   LENGTH = 0x00001500
     ram (rwx)    : ORIGIN = 0x08001500,   LENGTH = 0x0003EB00
     vimram (rx)  : ORIGIN = 0xFFF82000,   LENGTH = 0x000004A0
@@ -36,7 +37,7 @@ SECTIONS
     {
         . = ALIGN(4);
         KEEP(*(.intvecs))
-    } > rom
+    } > vectors
 
     .text :
     {
